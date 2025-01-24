@@ -12,17 +12,23 @@ Esto es comentario
 de muchas lineas
 */
 function App() {
-  var [nombre, cambiarNombre] = useState("Fulanito")
+  var [nombre, cambiarNombre] = useState("")
+  var [tareas, cambiarTareas] = useState([])
 
-  function AlCambiar(e) {
-    var valor = e.target.value
+  function AlCambiar(evento) {
+    var valor = evento.target.value
     cambiarNombre(valor)
   }
 
+  function AlAgregar() {
+    cambiarTareas([...tareas, nombre])
+  }
+
   return <div>
-    <p>Tu nombre es { nombre }</p>
-    <p>Introduce tu nombre</p>
+    <p>Introduce una tarea</p>
     <input type="text" value={nombre} onChange={AlCambiar} />
+    <button onClick={AlAgregar}>Agregar</button>
+    { tareas.map(tarea => <p>{ tarea }</p>) }
   </div>
 }
 
